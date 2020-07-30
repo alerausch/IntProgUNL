@@ -1,6 +1,0 @@
-Voy a hacer un programa con lo siguiente:
-
-menu de usuarios
-menu de herramientas
-
-menu de ayuda
