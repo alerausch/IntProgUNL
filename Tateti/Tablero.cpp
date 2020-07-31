@@ -29,6 +29,13 @@ bool Tablero::revisarTateti(char fichaIn){
 		if ( (fichaIn==tablero[2][12]) && (fichaIn==tablero[4][12]) && (fichaIn==tablero[6][12])){
 			hayTateti= true;
 		}
+		//reviso diagonales
+		if ( (fichaIn==tablero[2][4]) && (fichaIn==tablero[4][8]) && (fichaIn==tablero[6][12])){
+			hayTateti= true;
+		}
+		if ( (fichaIn==tablero[6][4]) && (fichaIn==tablero[4][8]) && (fichaIn==tablero[2][12])){
+			hayTateti= true;
+		}
 	}
 	if (hayTateti){
 		return true;
