@@ -15,4 +15,3 @@ char Jugador::mostrarFicha(){
 int Jugador::mostrarColor(){
 	return color;
 }
-

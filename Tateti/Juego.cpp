@@ -1,12 +1,13 @@
 #include "Juego.h"
-#include "conio2.h"
+#include <conio2.h>
+
 Juego::Juego(){
 	J1= Jugador("Jugador 1",'X',5);
 	J2= Jugador("Jugador 2",'O',3);
-	cuentaingresos= 0;
 }
 
 bool Juego::leerOpcion(char fichaIn){
+	cout<<"Opcion elegida: ";
 	bool opcionValida= false;
 	while (!opcionValida){
 		if (kbhit){
@@ -14,8 +15,8 @@ bool Juego::leerOpcion(char fichaIn){
 			switch(tecla){
 			case '7':
 				if (TableroJuego.revisarPosicion(0,0)){
-					TableroJuego.borrarBoton(0,0);
-					coordenadas[0][0]="                ";
+					TableroJuego.borrarPosicion(0,0);
+					opciones[0][0]="                ";
 					x= 2;
 					y= 4;
 					opcionValida= true;
@@ -24,8 +25,8 @@ bool Juego::leerOpcion(char fichaIn){
 				break;
 			case '8':
 				if (TableroJuego.revisarPosicion(0,1)){
-					TableroJuego.borrarBoton(0,1);
-					coordenadas[0][1]="                ";
+					TableroJuego.borrarPosicion(0,1);
+					opciones[0][1]="                ";
 					x= 2;
 					y= 8;
 					opcionValida= true;
@@ -34,8 +35,8 @@ bool Juego::leerOpcion(char fichaIn){
 				break;
 			case '9':
 				if (TableroJuego.revisarPosicion(0,2)){
-					TableroJuego.borrarBoton(0,2);
-					coordenadas[0][2]="                ";
+					TableroJuego.borrarPosicion(0,2);
+					opciones[0][2]="                ";
 					x= 2;
 					y= 12;
 					opcionValida= true;
@@ -44,8 +45,8 @@ bool Juego::leerOpcion(char fichaIn){
 				break;
 			case '4':
 				if (TableroJuego.revisarPosicion(1,0)){
-					TableroJuego.borrarBoton(1,0);
-					coordenadas[1][0]="                ";
+					TableroJuego.borrarPosicion(1,0);
+					opciones[1][0]="                ";
 					x= 4;
 					y= 4;
 					opcionValida= true;
@@ -54,8 +55,8 @@ bool Juego::leerOpcion(char fichaIn){
 				break;
 			case '5':
 				if (TableroJuego.revisarPosicion(1,1)){
-					TableroJuego.borrarBoton(1,1);
-					coordenadas[1][1]="                ";
+					TableroJuego.borrarPosicion(1,1);
+					opciones[1][1]="                ";
 					x= 4;
 					y= 8;
 					opcionValida= true;
@@ -64,8 +65,8 @@ bool Juego::leerOpcion(char fichaIn){
 				break;
 			case '6':
 				if (TableroJuego.revisarPosicion(1,2)){
-					TableroJuego.borrarBoton(1,2);
-					coordenadas[1][2]="                ";
+					TableroJuego.borrarPosicion(1,2);
+					opciones[1][2]="                ";
 					x= 4;
 					y= 12;
 					opcionValida= true;
@@ -74,8 +75,8 @@ bool Juego::leerOpcion(char fichaIn){
 				break;
 			case '1':
 				if (TableroJuego.revisarPosicion(2,0)){
-					TableroJuego.borrarBoton(2,0);
-					coordenadas[2][0]="                ";
+					TableroJuego.borrarPosicion(2,0);
+					opciones[2][0]="                ";
 					x= 6;
 					y= 4;
 					opcionValida= true;
@@ -84,8 +85,8 @@ bool Juego::leerOpcion(char fichaIn){
 				break;
 			case '2':
 				if (TableroJuego.revisarPosicion(2,1)){
-					TableroJuego.borrarBoton(2,1);
-					coordenadas[2][1]="                ";
+					TableroJuego.borrarPosicion(2,1);
+					opciones[2][1]="                ";
 					x= 6;
 					y= 8;
 					opcionValida= true;
@@ -94,8 +95,8 @@ bool Juego::leerOpcion(char fichaIn){
 				break;
 			case '3':
 				if (TableroJuego.revisarPosicion(2,2)){
-					TableroJuego.borrarBoton(2,2);
-					coordenadas[2][2]="                ";
+					TableroJuego.borrarPosicion(2,2);
+					opciones[2][2]="                ";
 					x= 6;
 					y= 12;
 					opcionValida= true;
@@ -110,11 +111,11 @@ bool Juego::leerOpcion(char fichaIn){
 };
 
 void Juego::imprimirOpciones(){
-	cout<<endl<<"Ingresa la opcion elegida: "<<endl;
+	cout<<endl<<"Opciones disponibles: "<<endl;
 	cout<<"--------------------------------------------------------"<<endl;
 	for (int i=0; i<3; i++){
 		for (int j=0; j<3; j++){
-			cout<<coordenadas[i][j]<<" | ";
+			cout<<opciones[i][j]<<" | ";
 		}
 		cout<<endl;
 		cout<<"--------------------------------------------------------"<<endl;
@@ -128,6 +129,7 @@ void Juego::jugar(){
 		borrarPantalla();
 		imprimirCabecera();
 		TableroJuego.dibujarTablero();
+		// aquí utilizo un alternador booleano para controlar los turnos
 		if (alternador){
 			textcolor(J1.mostrarColor());
 			cout<<"Turno del "<<J1.mostrarNombre()<<" - Ficha: "<<J1.mostrarFicha()<<endl;

@@ -1,7 +1,6 @@
 #include "Tablero.h"
 #include <iostream>
 using namespace std;
-
 Tablero::Tablero(){
 	cuentaFichas = 0;
 };
@@ -44,7 +43,7 @@ bool Tablero::revisarTateti(char fichaIn){
 	}
 }
 
-void Tablero::borrarBoton(int x, int y){
+void Tablero::borrarPosicion(int x, int y){
 	minitablero[x][y]= ' ';
 };
 
